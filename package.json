@@ -1,0 +1,29 @@
+{
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "description": "A CLI-based employee database system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baker-ling/employee_tracker.git"
+  },
+  "keywords": [
+    "employee",
+    "database",
+    "mysql",
+    "employees"
+  ],
+  "author": "Brian Baker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baker-ling/employee_tracker/issues"
+  },
+  "homepage": "https://github.com/baker-ling/employee_tracker#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2"
+  }
+}
