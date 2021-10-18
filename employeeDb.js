@@ -62,7 +62,7 @@ const employeeDb = {
 
   /**
    * Gets all the departments in the database
-   * @returns {DepartmentData[]}
+   * @returns {Promise<DepartmentData[]>}
    */
   async getDepartments() {
     const [departments] = await this.connection.query('SELECT * FROM department ORDER BY id');
@@ -71,7 +71,7 @@ const employeeDb = {
 
   /**
    * Gets all the roles in the database, including their departments
-   * @returns {RoleData[]}
+   * @returns {Promise<RoleData[]>}
    */
   async getRoles() {
     const [roles] = await this.connection.query(
@@ -84,7 +84,7 @@ const employeeDb = {
 
   /**
    * Gets all the employees in the database, including departmetns, titles, salaries, and managers (if assigned)
-   * @returns {EmployeeData[]}
+   * @returns {Promise<EmployeeData[]>}
    */
   async getEmployees() {
     const [employees] = await this.connection.query(
@@ -101,7 +101,7 @@ const employeeDb = {
   /**
    * Gets all roles that a given department has
    * @param {number} department_id 
-   * @returns {RoleData[]} 
+   * @returns {Promise<RoleData[]>} 
    */
   async getRolesByDepartmentId(department_id) {
     const [roles] = await this.connection.query(
@@ -114,7 +114,7 @@ const employeeDb = {
   /**
    * Gets all employee records that belong a department
    * @param {number} department_id 
-   * @returns {EmployeeData[]}
+   * @returns {Promise<EmployeeData[]>}
    */
   async getEmployeesByDepartmentId(department_id) {
     const [employees] = await this.connection.query(
@@ -132,7 +132,7 @@ const employeeDb = {
   /**
    * Adds a department to the database and returns the id of the inserted record
    * @param {string} departmentName 
-   * @returns {number}
+   * @returns {Promise<number>}
    */
   async addDepartment(departmentName) {
     const [result] = await this.connection.query(
@@ -144,7 +144,7 @@ const employeeDb = {
   /**
    * Adds a new role to the employee database.
    * @param {RoleData} roleData 
-   * @returns {number} 
+   * @returns {Promise<number>} 
    */
   async addRole(roleData) {
     const {title, salary, department_id} = roleData;
@@ -158,7 +158,7 @@ const employeeDb = {
   /**
    * Adds an employee to the database
    * @param {EmployeeData} employeeData 
-   * @returns {number}
+   * @returns {Promise<number>}
    */
   async addEmployee(employeeData) {
     const {first_name, last_name, role_id, manager_id} = employeeData;
@@ -173,7 +173,7 @@ const employeeDb = {
    * Updates the role id for the employee specified by id
    * @param {number} employeeId 
    * @param {number} newRoleId 
-   * @returns {number}
+   * @returns {Promise<number>}
    */
   async updateEmployeeRole(employeeId, newRoleId) {
     const [result] = await this.connection.query(
