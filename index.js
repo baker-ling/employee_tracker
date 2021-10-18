@@ -150,7 +150,7 @@ async function addRole() {
  * Prompts to add a new employee to the employee database.
  */
 async function addEmployee() {
-  const departments =  employeeDb.getDepartments();
+  const departments =  await employeeDb.getDepartments();
   // prompt for employee name and department
   let employeeData = await inquirer.prompt([
     {
