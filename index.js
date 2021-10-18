@@ -79,7 +79,11 @@ async function addDepartment() {
       type: 'input',
       name: 'name',
       message: 'What is the name of the department?',
-      validate: input => input.trim().length > 0 || "You must enter a department name.",
+      validate: input => {
+        if (input.trim().length === 0) return "You must enter a department name.";
+        if (input.trim().length > 30) return "Department names may not exceed 30 characters.";
+        return true;
+      },
       filter: input => input.trim()
     }
   ]);
@@ -118,7 +122,11 @@ async function addRole() {
       type: 'input',
       name: 'title',
       message: 'What is the name of the role?',
-      validate: input => input.trim().length > 0 || "You must enter a name for the role.",
+      validate: input => {
+        if (input.trim().length === 0) return "You must enter a name for the role.";
+        if (input.trim().length > 30) return "Role names may not exceed 30 characters.";
+        return true;
+      },
       filter: input => input.trim()
     },
     {
@@ -149,14 +157,22 @@ async function addEmployee() {
       type: 'input',
       name: 'first_name',
       message: `What is the employee's first name?`,
-      validate: input => input.trim().length > 0 || "You must enter a first name.",
+      validate: input => {
+        if (input.trim().length === 0) return "You must enter a first name.";
+        if (input.trim().length > 30) return "First names may not exceed 30 characters.";
+        return true;
+      },
       filter: input => input.trim()
     },
     {
       type: 'input',
       name: 'last_name',
       message: `What is the employee's last name?`,
-      validate: input => input.trim().length > 0 || "You must enter a last name.",
+      validate: input => {
+        if (input.trim().length === 0) return "You must enter a last name.";
+        if (input.trim().length > 30) return "Last names may not exceed 30 characters.";
+        return true;
+      },
       filter: input => input.trim()
     },
     {
@@ -202,6 +218,9 @@ async function addEmployee() {
   }
 }
 
+/**
+ * Prompts to update the role of an employee
+ */
 async function updateEmployeeRole() {
   
   // get the employee name and department to reassign them to
@@ -249,6 +268,9 @@ async function updateEmployeeRole() {
   }
 }
 
+/**
+ * Ends the program and closes the database connection
+ */
 async function endProgram() {
   console.log('Exiting program. Goodbye!');
   await employeeDb.closeConnection();
